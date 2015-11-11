@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-2.0.xsd
+       						http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.1.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd"
+       default-lazy-init="true">
+
+    <!-- web 应用程序中 Shiro 主业务对象绑定 -->
+    <bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
+        <property name="realm" ref="shiroDbRealm" />
+        <property name="cacheManager" ref="shiroEhcacheManager" />
+    </bean>
+
+    <bean id="myAuthc" class="org.apache.shiro.web.filter.authc.FormAuthenticationFilter"/>
+    
+     <!-- 項目自定义的 Realm -->
+    <bean id="shiroDbRealm" class="com.common.core.AuthRealm">
+        <!--<property name="sysResourceMapper" ref="sysResourceMapper"/>-->
+        <!--<property name="sysRoleMapper" ref="sysRoleMapper"/>-->
+        <!--<property name="sysUserMapper" ref="sysUserMapper"/>-->
+        <!-- MD5 加密 -->
+        <property name="credentialsMatcher">
+            <bean class="org.apache.shiro.authc.credential.HashedCredentialsMatcher">
+                <property name="hashAlgorithmName" value="MD5" />
+            </bean>
+        </property>
+        <!-- 可配置 cache token 认证信息的cache，用于 REST 等需要频繁认证的场景 -->
+        <property name="authorizationCachingEnabled" value="true"/>
+    </bean>
+
+    <!-- Shiro 过滤器设置 -->
+    <bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
+        <property name="securityManager" ref="securityManager" />
+        <property name="loginUrl" value="/login.htm" />
+        <property name="successUrl" value="/home.htm" />
+        <property name="unauthorizedUrl" value="/error.htm"/>
+        <property name="filters">
+            <util:map>
+                <entry key="myAuthc" value-ref="myAuthc"/>
+            </util:map>
+        </property>
+        <property name="filterChainDefinitions">
+            <value>
+                /logout.htm = logout
+                /** = myAuthc
+            </value>
+        </property>
+    </bean>
+
+    <bean class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+        <property name="exceptionMappings">
+            <props>
+                <prop key="org.apache.shiro.authz.UnauthorizedException">
+                    /unauthorized
+                </prop>
+                <prop key="org.apache.shiro.authz.UnauthenticatedException">
+                    /unauthenticated
+                </prop>
+            </props>
+        </property>
+    </bean>
+    <!-- 用户授权信息 Cache, 采用 EhCache -->
+    <bean id="shiroEhcacheManager" class="org.apache.shiro.cache.ehcache.EhCacheManager">
+        <property name="cacheManagerConfigFile" value="classpath:ehcache-shiro.xml"/>
+    </bean>
+
+    <!-- 保证实现了 Shiro 内部 lifecycle 函数的 bean 执行 -->
+    <bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor"/>
+</beans>

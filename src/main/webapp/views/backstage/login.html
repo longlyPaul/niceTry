@@ -1,0 +1,88 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8"/>
+<title>福寿园-login</title>
+<link href="../../../static/css/style.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../../js/jquery.js"></script>
+<script type="text/javascript" src="../../../js/jquery/jquery.form.js"></script>
+<script type="text/javascript">
+    function submit(){
+        if($("input[name=username]").val()==null || $("input[name=username]").val()==''){
+            alert("用户名必须填写")
+            $("input[name=username]").focus();
+            return;
+        }
+        if($("input[name=password]").val()==null || $("input[name=password]").val()==''){
+            alert("密码必须填写")
+            $("input[name=password]").focus();
+            return;
+        }
+        $("#form1").submit();
+    }
+    function enterSubmit(event){
+        if(!event){
+            event=window.event;
+        }
+        if(event.keyCode==13){
+            submit();
+        }
+    }
+</script>
+    <shiro:authenticated>
+        <script type="text/javascript">
+            window.location.href = 'index.htm';
+       </script>
+    </shiro:authenticated>
+    <style>.error{color:red;}</style>
+</head>
+
+<body onkeydown="enterSubmit(event)">
+<form id="form1" action="" method="post">
+<table width="420" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr>
+    <td height="150">&nbsp;</td>
+  </tr>
+  <tr>
+    <td align="center"><img src="../../../static/img/logo.gif" width="232" height="180"/></td>
+  </tr>
+  <tr>
+    <td height="80" align="center">
+        <span class="error" th:text="${!#strings.isEmpty(shiroLoginFailure)}?'用户名或密码错误':''"></span>
+    </td>
+  </tr>
+  <tr>
+    <td><table width="420" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+        <td width="65"><img src="../../../static/img/log_l.gif" width="66" height="58"/></td>
+        <td style="background:url(../../../static/img/log_b.gif) repeat-x top;"><input name="username" type="text" class="inp" placeholder="用户名"/></td>
+        <td width="19"><img src="../../../static/img/log_r.gif" width="19" height="58"/></td>
+      </tr>
+    </table></td>
+  </tr>
+  <tr>
+    <td height="23">&nbsp;</td>
+  </tr>
+  <tr>
+    <td><table width="420" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+        <td width="66"><img src="../../../static/img/log_l1.gif" width="66" height="58"/></td>
+        <td style="background:url(../../../static/img/log_b.gif) repeat-x top;"><input name="password" type="password" class="inp1" placeholder="密码"/></td>
+        <td width="59">
+            <a href="#" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image5','','../../static/img/log_r2.gif',1)">
+            <img src="../../../static/img/log_r1.gif" width="59" height="58" id="Image5"/></a>
+        </td>
+      </tr>
+    </table></td>
+  </tr>
+  <tr>
+    <td height="23">&nbsp;</td>
+  </tr>
+  <tr>
+    <td><a href="javascript:void(0)" onclick="submit()">
+        submit</a></td>
+  </tr>
+</table>
+    </form>
+</body>
+</html>

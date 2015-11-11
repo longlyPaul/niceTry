@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+	  xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta http-equiv="X-UA-Compatible" content="IE=8" />
+	<title>首页</title>
+	<script>
+		$(function(){
+			$('.index_focus').slides({
+				preload: true,
+				preloadImage: 'img/loading.gif',
+				play: 5000,
+				pause: 2500,
+				hoverPause: true
+			});
+		});
+	</script>
+</head>
+<body class="container_index">
+<div id="content" layout:fragment="content">
+	<div class="index_focus">
+		<div class="slides_container">
+			<a  class="index_focus_pic">
+				<img />
+				<h2 class="index_focus_info">家长如何早期发现自己的孩子有自闭症</h2>
+			</a>
+		</div>
+	</div>
+    <!--背景图绝对定位-->
+    <div id="d" style="background: url(../../../static/imgs/sprits_popup.png) no-repeat 0px 0px;width:30px;height:30px;border:1px solid;">
+    </div>
+    <div class="index_row service_row">
+		<div class="hd">
+			<h2 class="title">医采网 全程一体化服务</h2>
+			<h3 class="e_title">Medical recovery network full integration services</h3>
+		</div>
+		<div class="columns_3">
+			<div class="service_item">
+				<a href="/article/list3.html">
+					<i class="quick_ico icon_01"></i>
+					<h2>采购信息</h2>
+					<p>为了规范医疗机构医疗器械购销活动，引入市场竞争机制，提高医疗器械采购透明度。</p>
+				</a>
+			</div>
+			<div class="service_item service_item_gray">
+				<a href="/article/list.html?t=bid">
+					<i class="quick_ico icon_02"></i>
+					<h2>招投标信息</h2>
+					<p>致力于为企业提供招标、采购、拟在建项目信息及网上招标采购等一系列服务。</p>
+				</a>
+			</div>
+			<div class="service_item">
+				<a href="javascript:void(0)" onclick="window.location.href='/product/center.html'">
+					<i class="quick_ico icon_03"></i>
+					<h2>产品中心</h2>
+					<p>提供国内外最先进优秀专业医疗器械设备，拥有全国品类最全的产品库，提供质量安全，放心的产品。</p>
+				</a>
+			</div>
+		</div>
+		<div class="columns_2">
+			<div class="service_item service_item_gray">
+				<a href="/financialProduct/list.html">
+					<i class="quick_ico icon_04"></i>
+					<h2>金融服务</h2>
+					<p>为供应链成员企业提供的多种标准化和非标准化贸易融<br/>资产品的总和。</p>
+				</a>
+			</div>
+			<div class="service_item service_item_blue">
+				<a href="/expertService/list.html">
+					<i class="quick_ico icon_05"></i>
+					<h2>专家服务</h2>
+					<p>全国医疗权领域最大且最富经验的医疗团队，为医疗健康<br/>行业构建权威医疗器械平台。</p>
+				</a>
+			</div>
+		</div>
+		<div class="columns_3">
+			<div class="service_item">
+				<a href="javascript:void(0)">
+					<i class="quick_ico icon_06"></i>
+					<h2>诚信供应商</h2>
+					<p>我们努力为客户营造安全、诚信、放心的网上交易平台；<br/>以客户为导向，以服务为核心！</p>
+				</a>
+			</div>
+			<div class="service_item service_item_gray">
+				<a href="javascript:void(0)">
+					<i class="quick_ico icon_07"></i>
+					<h2>优秀产品</h2>
+					<p>在全国范围选拔优秀医疗产品，培育著名医疗品牌。</p>
+				</a>
+			</div>
+			<div class="service_item" >
+				<a  class="pic" target="_blank">
+					<img />
+				</a>
+			</div>
+		</div>
+		<div class="columns_2">
+			<div class="service_item">
+				<a href="/article/list.html?t=survey">
+					<i class="quick_ico icon_08"></i>
+					<h2>行业调查</h2>
+					<p>提供中国医疗市场全方位的专项市场调查及研究，<br/>并根据客户不同需求，度身定制专属市场调研报告和服务。</p>
+				</a>
+			</div>
+			<div class="service_item service_item_blue">
+				<a href="javascript:void(0)">
+					<i class="quick_ico icon_09"></i>
+					<h2>采购指数</h2>
+					<p>反映中国境内涉及医疗器械招标采购行为的<br/>活跃程度，同时反映了中国医疗器械招标活动的规模和发展趋势。</p>
+				</a>
+			</div>
+		</div>
+		<div class="columns_3">
+			<div class="service_item service_item_gray">
+				<a href="/reviewproduct/list.html">
+					<i class="quick_ico icon_10"></i>
+					<h2>价格评价</h2>
+					<p>汇集全国500多家供应商，1000多个品种，7000多条医疗产品提<br/>供不同地区最新产品行情信息和价格指数，数据准确、及时、全面。</p>
+				</a>
+			</div>
+			<div class="service_item">
+				<a href="/article/list.html?t=service">
+					<i class="quick_ico icon_11"></i>
+					<h2>服务评价</h2>
+					<p>树立医疗器械行业服务质量的标杆,对医疗器械服务质量进<br/>行科学评价,提高医疗器械行业的服务质量。 </p>
+				</a>
+			</div>
+			<div class="service_item" >
+				<a  class="pic" target="_blank">
+					<img />
+				</a>
+			</div>
+		</div>
+		<div class="columns_2 rotate_columns">
+			<div class="service_item service_item_blue">
+				<a href="/qualityEval/list.html">
+					<i class="quick_ico icon_12"></i>
+					<h2>质量评估</h2>
+					<p>拥有权威检测机构提供多种类型的产品检测服务及技术支持。 </p>
+				</a>
+			</div>
+			<div class="service_item service_item_gray">
+				<a href="/article/list.html?t=exposure">
+					<i class="quick_ico icon_13"></i>
+					<h2>曝光台</h2>
+					<p>创造一个保护广大民众合法权益的绿色维权平台。 </p>
+				</a>
+			</div>
+		</div>
+	</div>
+	<div class="index_row hot_row">
+		<div class="hd">
+			<h2 class="title">热销品牌 更多优惠</h2>
+			<h3 class="e_title">The hot selling brand more concessions</h3>
+		</div>
+		<ul class="brand_list">
+			<li>
+				<a href="javascript:void(0)">
+					<img  alt=""/>
+					<div class="intro">
+						<h2>广告文案</h2><p>提供中国医疗市场全方位的专项市场调查及研究，并根 据客户不同需求，度身定制专属市场调研报告和服务。</p>
+					</div>
+				</a>
+			</li>
+			<li>
+				<a href="javascript:void(0)"><img  alt=""/>
+					<div class="intro">
+						<h2>广告文案</h2><p>提供中国医疗市场全方位的专项市场调查及研究，并根 据客户不同需求，度身定制专属市场调研报告和服务。</p>
+					</div>
+				</a>
+
+			</li>
+			<li>
+				<a href="javascript:void(0)"><img  alt=""/>
+					<div class="intro">
+						<h2>广告文案</h2><p>提供中国医疗市场全方位的专项市场调查及研究，并根 据客户不同需求，度身定制专属市场调研报告和服务。</p>
+					</div>
+				</a>
+			</li>
+		</ul>
+	</div>
+</div>
+</body>
+</html>
