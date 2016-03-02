@@ -56,7 +56,6 @@ public class AddTwoNumbers {
             }
             l1=l1.next;
             l2=l2.next;
-
             count1--;count2--;
             if(count1!=0||count2!=0) {
                 result.next = new ListNode(0);
