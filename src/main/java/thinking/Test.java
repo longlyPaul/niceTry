@@ -10,8 +10,12 @@ public class Test {
         ExecutorService executorService= Executors.newCachedThreadPool();
         for(int i=0;i<=10;i++){
             Future<String> future=executorService.submit(new CallableTest(i));
-            future.isCancelled();
-//            TimeUnit.SECONDS.sleep(10);
+//            future.isCancelled();
+            try {
+                TimeUnit.SECONDS.sleep(1);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
 //            TimeUnit.SECONDS.timedWait();
             try {
                 CommonUtils.printObjec(future.get());

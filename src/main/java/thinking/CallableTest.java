@@ -7,14 +7,15 @@ import java.util.concurrent.Callable;
  */
 public class CallableTest implements Callable<String> {
     private int id;
-    private ThreadLocal<Integer> count=new ThreadLocal<Integer>();
+    private Integer count=new Integer(10);
 //    private int count;
     public CallableTest(int id){
-        count.set(10);
+//        count.set(10);
         this.id=id;
     }
     @Override
     public String call() throws Exception {
-        return String.valueOf(id + count.get());
+        count++;
+        return String.valueOf(id + count);
     }
 }

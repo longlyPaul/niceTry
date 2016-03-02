@@ -1,7 +1,5 @@
 package thinking;
 
-import java.util.EnumSet;
-
 /**
  * Created by liusonglin on 15/11/8.
  */
@@ -28,7 +26,7 @@ public class TestEnum {
 
     public static void main(String[] args){
         System.out.println(demo.age.value);
-        System.out.println(demo.name.myfunction("1"));
+        System.out.println(demo.age.myfunction("1"));
         for(demo item:demo.values()){
             CommonUtils.printObjec(item.value);
         }
