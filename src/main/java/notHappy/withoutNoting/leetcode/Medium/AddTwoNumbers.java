@@ -136,10 +136,10 @@ public class AddTwoNumbers {
     public static void main(String[] args){
         ListNode listNode = new ListNode(9);
         listNode.next=new ListNode(8);
-//        listNode.next.next=new ListNode(3);
+        listNode.next.next=new ListNode(3);
         ListNode listNode1=new ListNode(1);
-//        listNode1.next=new ListNode(6);
-//        listNode1.next.next=new ListNode(7);
+        listNode1.next=new ListNode(6);
+        listNode1.next.next=new ListNode(7);
         functionTwo(listNode,listNode1).print();
     }
 }
