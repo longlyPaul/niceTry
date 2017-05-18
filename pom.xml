@@ -11,7 +11,7 @@
 
     <packaging>war</packaging>
 
-    <properties>
+    <propertie>
         <spring.version>3.2.9.RELEASE</spring.version>
         <mybatis.version>3.2.2</mybatis.version>
         <tomcat.version>7.0.39</tomcat.version>
@@ -36,7 +36,7 @@
         <plugin.war.version>2.4</plugin.war.version>
         <plugin.compiler.version>3.1</plugin.compiler.version>
         <poi.version>3.9</poi.version>
-    </properties>
+    </propertie>
 
     <dependencies>
         <!--spring-->
@@ -234,11 +234,6 @@
             <version>4.3.5</version>
         </dependency>
         <dependency>
-            <groupId>com.sny7</groupId>
-            <artifactId>filetiller</artifactId>
-            <version>1.0-SNAPSHOT</version>
-        </dependency>
-        <dependency>
             <groupId>org.apache.poi</groupId>
             <artifactId>poi-ooxml</artifactId>
             <version>3.9</version>
@@ -252,6 +247,11 @@
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
             <version>3.4</version>
+        </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.16.14</version>
         </dependency>
     </dependencies>
 
