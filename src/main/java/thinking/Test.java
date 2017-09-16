@@ -1,29 +1,40 @@
 package thinking;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 import java.util.concurrent.*;
 
 /**
  * Created by liusonglin on 15/11/8.
  */
 public class Test {
+
     public static void main(String[] args){
+
         ExecutorService executorService= Executors.newCachedThreadPool();
+        List<Future<String>> futures = new ArrayList<Future<String>>(16);
+        Random random = new Random(1);
+        CallableTest myCall = new CallableTest(random.nextInt(11) + 1);
         for(int i=0;i<=10;i++){
-            Future<String> future=executorService.submit(new CallableTest(i));
-//            future.isCancelled();
+            Future<String> future=executorService.submit(myCall);
+            futures.add(future);
+        }
+        for(Future item : futures){
             try {
-                TimeUnit.SECONDS.sleep(1);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-//            TimeUnit.SECONDS.timedWait();
-            try {
-                CommonUtils.printObjec(future.get());
+
+                CommonUtils.printObjec(item.get());
+                System.out.println("====================");
             } catch (InterruptedException e) {
                 e.printStackTrace();
             } catch (ExecutionException e) {
                 e.printStackTrace();
             }
+        }
+
+        executorService.shutdown();
+        if (executorService.isShutdown()){
+            System.out.println("done");
         }
     }
 }
