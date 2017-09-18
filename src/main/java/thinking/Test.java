@@ -2,6 +2,7 @@ package thinking;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.ListIterator;
 import java.util.Random;
 import java.util.concurrent.*;
 
@@ -10,7 +11,7 @@ import java.util.concurrent.*;
  */
 public class Test {
 
-    public static void main(String[] args){
+    public static void main(String[] args) throws ExecutionException, InterruptedException {
 
         ExecutorService executorService= Executors.newCachedThreadPool();
         List<Future<String>> futures = new ArrayList<Future<String>>(16);
@@ -20,15 +21,14 @@ public class Test {
             Future<String> future=executorService.submit(myCall);
             futures.add(future);
         }
-        for(Future item : futures){
-            try {
-
-                CommonUtils.printObjec(item.get());
-                System.out.println("====================");
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            } catch (ExecutionException e) {
-                e.printStackTrace();
+        while (futures.size()>0) {
+            ListIterator<Future<String>> item = futures.listIterator();
+            while (item.hasNext()) {
+                Future future = item.next();
+                if (future.isDone()) {
+                    CommonUtils.printObjec(future.get());
+                    item.remove();
+                }
             }
         }
 
