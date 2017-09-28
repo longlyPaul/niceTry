@@ -1,5 +1,6 @@
 package thinking;
 
+import java.util.Random;
 import java.util.concurrent.Callable;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -9,7 +10,8 @@ import java.util.concurrent.atomic.AtomicInteger;
  */
 public class CallableTest implements Callable<String> {
     private int id;
-    private AtomicInteger count = new AtomicInteger(10);
+    private AtomicInteger count = new AtomicInteger(0);
+    private Random random = new Random(1);
     public CallableTest(int id){
 //        count.set(10);
         this.id=id;
@@ -17,11 +19,13 @@ public class CallableTest implements Callable<String> {
     }
     @Override
     public String call() throws Exception {
+        int time = random.nextInt(11) + 1;
+        System.out.println("time = "+time);
         try {
-            TimeUnit.SECONDS.sleep(this.id);
+            TimeUnit.SECONDS.sleep(time);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        return String.valueOf(Thread.currentThread().getId()+"----->"+id + count.addAndGet(1));
+        return String.valueOf(Thread.currentThread().getId()+"----->"+ count.addAndGet(time));
     }
 }
