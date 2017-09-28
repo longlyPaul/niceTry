@@ -17,9 +17,31 @@ public class DFAalg {
 
     public static void main(String[] args){
 
-        buildSensitiveWordMap(readeFile());
+        List<String> keylist = readeFile();
 
-        System.out.println(checkAndReplaceWord("醉乙醚,左转是政,uoouo阿杜里斯就发了圣诞节发生的发，阿萨德积着护士的好胸分，转是政府"));
+        String word = "醉乙醚,左转是政,uoouo阿杜里斯就发了圣诞节发生的发，阿萨德积着护士的好胸分，转是政府";
+
+        buildSensitiveWordMap(keylist);
+
+        long start = System.currentTimeMillis();
+
+        System.out.println(checkAndReplaceWord(word));
+
+        System.out.println("-------->"+(System.currentTimeMillis()-start));
+
+        long two = System.currentTimeMillis();
+
+
+        for(String item : keylist){
+            if(word.indexOf(item)!=-1){
+                word = word.replace(item,"****");
+            }
+        }
+
+        System.out.println(word);
+
+        System.out.println("--------======>"+(System.currentTimeMillis()-two));
+
 
     }
 
@@ -28,7 +50,7 @@ public class DFAalg {
         //当前敏感字符路径
         Map<Character,Map> tempSensitiveWordMap = sensitiveWordMap;
 
-        //匹配其实位置
+        //匹配起始位置标记
         int startFlag = -1;
 
         for(int i = 0; i<word.length();i++ ){
@@ -37,12 +59,12 @@ public class DFAalg {
             Map wordMap = tempSensitiveWordMap.get(x);
 
             if(wordMap == null){
-                //如果向下路径为空，重置匹配其实位
+                //如果向下路径为空，重置匹配起始位与路径图
                 startFlag = -1;
                 tempSensitiveWordMap = sensitiveWordMap;
                 continue;
             }
-            //是否是其实位置
+            //是否是起始位置
             if(startFlag == -1){
                 startFlag = i;
             }
@@ -118,7 +140,6 @@ public class DFAalg {
             BufferedReader bufferedReader = new BufferedReader(reader);
             String data = null;
             while ((data = bufferedReader.readLine())!=null){
-                System.out.println(data);
                 result.add(data);
             }
         } catch (IOException e) {
